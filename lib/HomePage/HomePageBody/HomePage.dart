@@ -10,6 +10,7 @@ class HomePage extends StatelessWidget {
   static String id = "Home";
   const HomePage({super.key});
 
+
   @override
   Widget build(BuildContext context) {
     return Consumer<HomeProvider>(
@@ -38,12 +39,7 @@ class HomePage extends StatelessWidget {
                     height: 20,
                   ),
                   TextButton(
-                      onPressed: (){
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) {
-                              return ResultPage();
-                            }));
-                      },
+                      onPressed: ()=> stado.verResultado(context),
                       child:const Text("Ver Resultado"))
                 ],
               ),

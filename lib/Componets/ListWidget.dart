@@ -21,18 +21,24 @@ class ListWidget implements CheckboxWidgetBuilder{
         } else if (snapshot.hasError) {
           return Center(child: Text('Error: ${snapshot.error}'));
         } else {
-          print(snapshot);
-          return ListView.builder(
-            itemCount: snapshot.data!.length,
-            itemBuilder: (BuildContext context, int index) {
-              var user = snapshot.data![index];
-              return ListTile(
-                title: Text(user.nombre),
-                leading: Text(user.id.toString()),
-                trailing: Text(user.last_name),
-                subtitle: Text(user.birthday),
-              );
-            },
+
+          return SingleChildScrollView(
+            child: Container(
+              child: SizedBox(
+                height: MediaQuery.of(context).size.height/5,
+                child: ListView.builder(
+                  itemCount: snapshot.data!.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    var user = snapshot.data![index];
+                    return ListTile(
+                      title: Text("${user.name} ${user.last_name}"),
+                      leading: Text(user.id.toString()),
+                      subtitle: Text(user.birthday.toString()),
+                    );
+                  },
+                ),
+              ),
+            ),
           );
         }
       },

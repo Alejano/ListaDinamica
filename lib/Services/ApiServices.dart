@@ -23,11 +23,9 @@ class ApiServices implements ApiServicesImp{
     ));
     if(response.statusCode == 200){
       dynamic jsonf = json.decode(response.body);
-      print("User jsonf");
+      List<Usuario> UserList = [];
+      jsonf["data"]["employees"].map((e)=> UserList.add(Usuario.fromJson(e))).toList();
       print(jsonf);
-      List<Usuario> UserList = jsonf["data"]["employees"].map((e)=> Usuario.fromJson(e)).toList();
-      print("User List");
-      print(UserList);
       return UserList;
     }else{
       throw Exception("Fallo la peticion");

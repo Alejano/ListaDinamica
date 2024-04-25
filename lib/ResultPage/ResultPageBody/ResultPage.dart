@@ -20,17 +20,23 @@ class ResultPage extends StatelessWidget {
                 child: SingleChildScrollView(
                   child: SizedBox(
                     height: MediaQuery.of(context).size.height - MediaQuery.of(context).size.height/8,
-                    child: ListView.builder(
+                    child: ListView.separated(
                         itemCount: stado.getindexList().length,
                         itemBuilder: (context,index){
                           int indexElemento = stado.getindexList()[index];
                           if(indexElemento == 4) {
-                            return stado.builders[indexElemento].buildWidget({"format":"dd-MM-yyyy","context":context});
+                            return Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: stado.builders[indexElemento].buildWidget({"format":"dd-MM-yyyy","context":context}),
+                            );
                           }else{
-                            return stado.builders[indexElemento].buildWidget(
-                                stado.params[indexElemento]);
+                            return Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: stado.builders[indexElemento].buildWidget(
+                                  stado.params[indexElemento]),
+                            );
                           }
-                        }
+                        }, separatorBuilder: (BuildContext context, int index) => const Divider(),
                     ),
                   ),
                 ),

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -8,8 +10,8 @@ import 'package:listadinamica/Componets/DateWidget.dart';
 import 'package:listadinamica/Componets/ListWidget.dart';
 import 'package:listadinamica/Componets/SwitchWidget.dart';
 import 'package:listadinamica/Componets/TextFieldWidget.dart';
-import 'package:provider/provider.dart';
 
+import '../../ResultPage/ResultPageBody/ResultPage.dart';
 import '../../setupLocator.dart';
 
 class HomeProvider extends ChangeNotifier{
@@ -26,20 +28,10 @@ class HomeProvider extends ChangeNotifier{
     "Color Favorito"
   ];
   List<Map<String, dynamic>> params = [
-    {
-      'controller': TextEditingController(),
-      'keyboardType': TextInputType.number,
-      'decoration':const InputDecoration(
-        labelText: 'Enter your number',
-        icon: Icon(Icons.phone),
-        border: OutlineInputBorder(),
-      ),
-      'inputFormatters': [FilteringTextInputFormatter.digitsOnly],
-    },
+    {},
     {},
     {
       'maxLength': 35,
-      'keyboardType':const TextInputType.numberWithOptions(signed: true),
       'decoration':const InputDecoration(
         labelText: 'Nombre Completo',
         icon: Icon(Icons.perm_identity),
@@ -93,7 +85,6 @@ class HomeProvider extends ChangeNotifier{
         indexs.add(x);
       }
     }
-    print(indexs);
     return indexs;
   }
 
@@ -102,5 +93,32 @@ class HomeProvider extends ChangeNotifier{
       notifyListeners();
   }
 
+  void verResultado(BuildContext context){
+    bool selecciono = _opciones.firstWhere((element) => element == true, orElse:()=> false);
+    if(selecciono){
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) {
+            return ResultPage();
+          }));
+    }else {
+      showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: const Text("Debes Seleccionar almenos un elemento"),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text('Close'),
+              ),
+            ],
+          );
+        },
+      );
+    }
+
+  }
 
 }

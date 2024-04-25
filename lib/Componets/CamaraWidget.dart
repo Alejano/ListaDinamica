@@ -4,8 +4,6 @@ import 'package:listadinamica/Componets/CheckboxWidgetBuilder.dart';
 import 'dart:async';
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:path/path.dart';
-import 'package:path_provider/path_provider.dart';
 
 class CamaraWidget extends CheckboxWidgetBuilder{
   @override
@@ -23,11 +21,13 @@ class _CameraWidgetState extends State<_CameraWidget> {
   CameraController? _controller;
   Future<void>? _initializeControllerFuture;
   File? _image;
+  String msgt ="";
+  bool _isCamaraInicialized = false;
+  String fotoPath ="";
 
   @override
   void initState() {
     super.initState();
-    _initializeCamera();
   }
 
   Future<void> _initializeCamera() async {
@@ -39,26 +39,49 @@ class _CameraWidgetState extends State<_CameraWidget> {
       ResolutionPreset.medium,
     );
 
-    _initializeControllerFuture = _controller?.initialize();
+    _initializeControllerFuture = _controller?.initialize().then(
+      (_) {
+        if(mounted){
+          setState(() {
+            _image = null;
+            _isCamaraInicialized = true;
+          });
+        }
+      }
+    );
   }
 
   Future<void> _takePicture() async {
     try {
+
       await _initializeControllerFuture;
 
-      final path = join(
-        (await getTemporaryDirectory()).path,
-        '${DateTime.now()}.png',
-      );
 
-      await _controller?.takePicture();
+      final image = await _controller!.takePicture();
 
-      setState(() {
-        _image = File(path);
+      Future.delayed(const Duration(seconds: 1),() async {
+        await _controller!.dispose();
       });
+      setState(() {
+        fotoPath = image.path;
+        _image = File(fotoPath);
+      });
+
     } catch (e) {
       print(e);
     }
+  }
+
+  Future<void> _toggleCamaraPreview() async {
+      if(_isCamaraInicialized){
+        await _controller!.dispose();
+        setState(() {
+          _isCamaraInicialized = false;
+          _controller = null;
+        });
+      }else{
+        _initializeCamera();
+      }
   }
 
   @override
@@ -70,12 +93,21 @@ class _CameraWidgetState extends State<_CameraWidget> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: _image == null ? _takePicture : null,
-      child: CircleAvatar(
-        radius: 60,
-        backgroundColor: Colors.grey[200],
-        backgroundImage: _image != null ? FileImage(_image!) : null,
-        child: _image == null ? Icon(Icons.camera_alt, size: 50) : null,
+      onTap: _toggleCamaraPreview,
+      onDoubleTap: _isCamaraInicialized ? _takePicture:null,
+      child: Column(
+        children: [
+          CircleAvatar(
+            radius: 60,
+            backgroundColor: Colors.grey[200],
+            backgroundImage: _image != null ? FileImage(_image!) : null,
+            child: _image == null || !_isCamaraInicialized ?
+                (   _isCamaraInicialized ? ClipOval(child: CameraPreview(_controller!))
+                    : const Icon(Icons.camera_alt, size: 50)
+                ) : Text(msgt),
+          ),
+          const Text("1 tap toggle camara, doble tap take foto")
+        ],
       ),
     );
   }
