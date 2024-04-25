@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:listadinamica/Componets/CheckboxWidgetBuilder.dart';
+import 'package:listadinamica/ui/Widgets/CheckboxWidgetBuilder.dart';
 
 class ColorWidget extends CheckboxWidgetBuilder{
   @override

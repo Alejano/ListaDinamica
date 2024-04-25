@@ -1,10 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:listadinamica/HomePage/ViewModelProvider/HomeProvider.dart';
+import 'package:listadinamica/ViewModelProvider/HomeProvider.dart';
 import 'package:provider/provider.dart';
-
-import '../../ResultPage/ResultPageBody/ResultPage.dart';
 
 class HomePage extends StatelessWidget {
   static String id = "Home";

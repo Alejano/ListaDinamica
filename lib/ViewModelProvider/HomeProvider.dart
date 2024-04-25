@@ -3,16 +3,15 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:listadinamica/Componets/CamaraWidget.dart';
-import 'package:listadinamica/Componets/CheckboxWidgetBuilder.dart';
-import 'package:listadinamica/Componets/ColorWidget.dart';
-import 'package:listadinamica/Componets/DateWidget.dart';
-import 'package:listadinamica/Componets/ListWidget.dart';
-import 'package:listadinamica/Componets/SwitchWidget.dart';
-import 'package:listadinamica/Componets/TextFieldWidget.dart';
-
-import '../../ResultPage/ResultPageBody/ResultPage.dart';
-import '../../setupLocator.dart';
+import 'package:listadinamica/ui/Widgets/CamaraWidget.dart';
+import 'package:listadinamica/ui/Widgets/CheckboxWidgetBuilder.dart';
+import 'package:listadinamica/ui/Widgets/ColorWidget.dart';
+import 'package:listadinamica/ui/Widgets/DateWidget.dart';
+import 'package:listadinamica/ui/Widgets/ListWidget.dart';
+import 'package:listadinamica/ui/Widgets/SwitchWidget.dart';
+import 'package:listadinamica/ui/Widgets/TextFieldWidget.dart';
+import 'package:listadinamica/ui/ResultPage/ResultPageBody/ResultPage.dart';
+import 'package:listadinamica/locator/setupLocator.dart';
 
 class HomeProvider extends ChangeNotifier{
 

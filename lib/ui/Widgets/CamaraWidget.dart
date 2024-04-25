@@ -1,6 +1,6 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:listadinamica/Componets/CheckboxWidgetBuilder.dart';
+import 'package:listadinamica/ui/Widgets/CheckboxWidgetBuilder.dart';
 import 'dart:async';
 import 'dart:io';
 import 'package:flutter/material.dart';

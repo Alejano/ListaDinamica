@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:listadinamica/Componets/CheckboxWidgetBuilder.dart';
+import 'package:listadinamica/ui/Widgets/CheckboxWidgetBuilder.dart';
 import 'package:intl/intl.dart';
 
 class DateWidget implements CheckboxWidgetBuilder{

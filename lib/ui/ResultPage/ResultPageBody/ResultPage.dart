@@ -1,9 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
-import '../../HomePage/ViewModelProvider/HomeProvider.dart';
-import '../Appbar.dart';
+import 'package:listadinamica/ViewModelProvider/HomeProvider.dart';
+import 'package:listadinamica/ui/ResultPage/Appbar.dart';
 
 class ResultPage extends StatelessWidget {
   const ResultPage({super.key});

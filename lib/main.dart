@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:listadinamica/HomePage/ViewModelProvider/HomeProvider.dart';
-import 'package:listadinamica/setupLocator.dart';
+import 'package:listadinamica/ViewModelProvider/HomeProvider.dart';
+import 'package:listadinamica/locator/setupLocator.dart';
 import 'package:provider/provider.dart';
-import 'HomePage/HomePageBody/HomePage.dart';
+import 'package:listadinamica/ui/HomePage/HomePageBody/HomePage.dart';
 
 
 

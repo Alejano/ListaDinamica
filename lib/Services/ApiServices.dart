@@ -25,7 +25,6 @@ class ApiServices implements ApiServicesImp{
       dynamic jsonf = json.decode(response.body);
       List<Usuario> UserList = [];
       jsonf["data"]["employees"].map((e)=> UserList.add(Usuario.fromJson(e))).toList();
-      print(jsonf);
       return UserList;
     }else{
       throw Exception("Fallo la peticion");

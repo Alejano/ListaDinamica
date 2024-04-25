@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:listadinamica/Componets/CheckboxWidgetBuilder.dart';
-import 'package:listadinamica/Services/ApiServices.dart';
+import 'package:listadinamica/ui/Widgets/CheckboxWidgetBuilder.dart';
 import 'package:listadinamica/Services/ApiServicesIm.dart';
-
-import '../Model/Usuario.dart';
+import 'package:listadinamica/Model/Usuario.dart';
 
 class ListWidget implements CheckboxWidgetBuilder{
   final ApiServicesImp _apiServices;
